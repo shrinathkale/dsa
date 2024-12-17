@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string.h>
+Int const size=2;
+Using namespace std;
+Struct student
+{
+Int rollno;
+Char name[20];
+Float SGPA;
+};
+Void accept(struct student list[size]);
+Void display(struct student list[size]);
+Void bubblesort(struct student list[size]);
+Int main()
+{
+Struct student data[20];
+Int ch;
+Accept(data);
+Cout<<”\n Bubble Sort for Roll No”;
+Bubblesort(data);
+Display(data);
+Return 0;
+}
+Void accept(struct student list[size])
+{
+Int I;
+For (i=0;i<size;i++)
+{
+Cout<<”Enter roll no.,name and SGPA:”;
+Cin>>list[i].rollno>>list[i].name>>list[i].SGPA;
+}
+}
+Void display(struct student list[80])
+{
+Int I;
+Cout<<”\n roll no.\tname\tSGPA\n”;
+For(i=0;i<size;i++)
+{
+Cout<<”\n”<<list[i].rollno<<”\t”<<list[i].name<<”\t”<<list[i].SGPA;
+}
+}
+Void bubblesort(struct student list[size])
+{
+Int I,j;
+Struct student temp;
+For(i=0;i<size-1;i++)
+{
+For(j=0;j<(size-1-i);j++)
+{
+If(list[j].rollno>list[j+1].rollno)
+{
+Temp=list[j];
+List[j]=list[j+1];
+List[j+1]=temp;
+}
+}
+}
+}
