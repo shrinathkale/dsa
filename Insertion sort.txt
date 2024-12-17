@@ -1,0 +1,82 @@
+#include <iostream>
+#include <string.h> 
+using namespace std;
+
+const int size = 2;
+struct student {
+    int rollno;
+    char name[20];
+    float SGPA;
+};
+
+void accept(struct student list[size]);
+void display(struct student list[size]);
+void sortByName(struct student list[size]); 
+void binarysearch(struct student list[size]);
+
+int main() {
+    struct student data[size]; 
+    cout << "\nAccept data:\n";
+    accept(data);
+    
+    cout << "\nSorting data by name...\n";
+    sortByName(data);
+    
+    cout << "\nDisplaying sorted data:\n";
+    display(data);
+    
+    cout << "\nPerforming binary search:\n";
+    binarysearch(data);
+    
+    return 0;
+}
+
+void accept(struct student list[size]) {
+    for (int i = 0; i < size; i++) {
+        cout << "Enter roll no., name, and SGPA: ";
+        cin >> list[i].rollno >> list[i].name >> list[i].SGPA;
+    }
+}
+
+void display(struct student list[size]) { 
+    cout << "\nRoll No.\tName\tSGPA\n";
+    for (int i = 0; i < size; i++) {
+        cout << list[i].rollno << "\t\t" << list[i].name << "\t" << list[i].SGPA << endl;
+    }
+}
+
+void sortByName(struct student list[size]) {
+    struct student temp;
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = i + 1; j < size; j++) {
+            if (strcmp(list[i].name, list[j].name) > 0) {
+                temp = list[i];
+                list[i] = list[j];
+                list[j] = temp;
+            }
+        }
+    }
+}
+
+void binarysearch(struct student list[size]) {
+    int lower = 0, upper = size - 1, mid;
+    char search[20];
+    cout << "\nEnter the name of the student you want to search: ";
+    cin >> search;
+
+    while (lower <= upper) {
+        mid = (lower + upper) / 2;
+        if (strcmp(list[mid].name, search) == 0) {
+            cout << "\nRecord Found:\n";
+            cout << list[mid].rollno << "\t" << list[mid].name << "\t" << list[mid].SGPA << endl;
+            return;
+        }
+        else if (strcmp(list[mid].name, search) < 0) {
+            lower = mid + 1;
+        }
+        else {
+            upper = mid - 1;
+        }
+    }
+    cout << search << " not found in the list.\n";
+}
